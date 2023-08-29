@@ -1,0 +1,79 @@
+package com.example.travalexam.ui
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.travalexam.databinding.FragmentHomeBinding
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
+
+class HomeFragment : Fragment() {
+
+  private var _binding: FragmentHomeBinding? = null
+  private val binding get() = _binding!!
+
+  private val viewModel: HomeViewModel by viewModel()
+
+  private val homeAttractionsAdapter: HomeAttractionsAdapter by lazy {
+    HomeAttractionsAdapter(this::onItemClicked)
+  }
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    _binding = FragmentHomeBinding.inflate(inflater, container, false)
+    return binding.root
+  }
+
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+
+    initAttractionsView()
+    initSwipeRefreshLayout()
+
+    observeAttractionSource()
+    observeLanguageCodeSource()
+  }
+
+  private fun initAttractionsView() {
+    with(binding.attractionsView) {
+      layoutManager = LinearLayoutManager(requireContext())
+      adapter = homeAttractionsAdapter
+    }
+  }
+
+  private fun onItemClicked(attractionId: Int) {
+    // TODO : Navigation
+  }
+
+  private fun initSwipeRefreshLayout() {
+    binding.swipeRefreshLayout.setOnRefreshListener {
+      homeAttractionsAdapter.refresh()
+    }
+  }
+
+  private fun observeAttractionSource() {
+    homeAttractionsAdapter.addLoadStateListener { loadState ->
+      when (loadState.refresh) {
+        is LoadState.Loading -> binding.swipeRefreshLayout.isRefreshing = true
+        else -> binding.swipeRefreshLayout.isRefreshing = false
+      }
+    }
+
+    viewModel.attractionSource.observe(viewLifecycleOwner) {
+      homeAttractionsAdapter.submitData(lifecycle, it)
+    }
+  }
+
+  private fun observeLanguageCodeSource() {
+    viewModel.currentLanguage.observe(viewLifecycleOwner) {
+      // TODO : Switch language
+    }
+  }
+
+}
