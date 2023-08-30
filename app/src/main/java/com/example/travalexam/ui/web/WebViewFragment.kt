@@ -6,10 +6,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.travalexam.databinding.FragmentWebViewBinding
+import com.example.travalexam.utils.Utils
 
 class WebViewFragment : Fragment() {
 
@@ -25,6 +27,10 @@ class WebViewFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
+    Utils.fullscreenBehindStatusBar(requireActivity().window, binding.root)
+    WindowCompat.getInsetsController(requireActivity().window, view).isAppearanceLightStatusBars = true
+
     setupBackPressedListener()
     setupWebView()
   }

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.WindowCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -11,6 +12,7 @@ import com.example.travalexam.data.Attraction
 import com.example.travalexam.data.Image
 import com.example.travalexam.databinding.FragmentDetailBinding
 import com.example.travalexam.utils.SpacingItemDecorator
+import com.example.travalexam.utils.Utils
 import com.example.travalexam.utils.bindImage
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -32,6 +34,10 @@ class DetailFragment : Fragment() {
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
+    Utils.fullscreenBehindStatusBar(requireActivity().window, binding.root)
+    WindowCompat.getInsetsController(requireActivity().window, view).isAppearanceLightStatusBars = true
+
     collectData()
     observeData()
     setupImageViews()
