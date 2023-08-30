@@ -34,6 +34,27 @@
       app:argType="integer"
       app:nullable="false" />
 
+    <action
+      android:id="@+id/action_detailFragment_to_webViewFragment"
+      app:destination="@id/webViewFragment"
+      app:enterAnim="@anim/slide_in_right"
+      app:exitAnim="@anim/slide_out_left"
+      app:popEnterAnim="@anim/slide_in_left"
+      app:popExitAnim="@anim/slide_out_right"/>
+
+  </fragment>
+
+  <fragment
+    android:id="@+id/webViewFragment"
+    android:label="webView_fragment"
+    android:name="com.example.travalexam.ui.web.WebViewFragment"
+    tools:layout="@layout/fragment_web_view">
+
+    <argument
+      android:name="url"
+      app:argType="string"
+      app:nullable="false" />
+
   </fragment>
 
 </navigation>

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.travalexam.data.Attraction
 import com.example.travalexam.data.Image
 import com.example.travalexam.databinding.FragmentDetailBinding
@@ -73,6 +74,9 @@ class DetailFragment : Fragment() {
       binding.addressTextView.text = address
       binding.modifiedTimeTextView.text = modifiedTime
       binding.officialSiteTextView.text = officialSite
+      binding.officialSiteTextView.setOnClickListener {
+        findNavController().navigate(DetailFragmentDirections.actionDetailFragmentToWebViewFragment(officialSite))
+      }
     }
   }
 }
