@@ -2,10 +2,14 @@
   <!-- Base application theme. -->
   <style name="Base.Theme.TravalExam" parent="Theme.Material3.DayNight.NoActionBar">
     <!-- Customize your light theme here. -->
-    <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+     <item name="colorPrimary">@android:color/holo_blue_light</item>
   </style>
 
   <style name="Theme.TravalExam" parent="Base.Theme.TravalExam" />
+
+  <style name="Starting" parent="Theme.TravalExam">
+    <item name="android:windowBackground">@drawable/bg_splash</item>
+  </style>
 
   <style name="RoundedRadius16">
     <item name="cornerFamily">rounded</item>
