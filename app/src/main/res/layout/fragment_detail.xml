@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  tools:context=".ui.detail.DetailFragment">
+
+  <com.google.android.material.imageview.ShapeableImageView
+    android:id="@+id/imageView"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_margin="8dp"
+    android:scaleType="centerCrop"
+    app:layout_constraintDimensionRatio="W,1:1"
+    app:layout_constraintTop_toTopOf="parent"
+    app:shapeAppearance="@style/RoundedRadius16" />
+
+  <androidx.core.widget.NestedScrollView
+    android:id="@+id/nestedScrollView"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_marginTop="8dp"
+    app:layout_constraintTop_toBottomOf="@id/imageView"
+    app:layout_constraintBottom_toBottomOf="parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/imagesViews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginVertical="8dp"
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:layout_height="88dp"
+        tools:ignore="RtlSymmetry" />
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/titleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginHorizontal="8dp"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:singleLine="true"
+        android:gravity="center|start"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/imagesViews"
+        tools:text="臺北表演藝術中心" />
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/introductionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/titleTextView"
+        app:layout_constraintEnd_toEndOf="@id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@id/titleTextView"
+        tools:text="臺北表演藝術中心（北藝中心）是亞洲共製中心、台灣的當代劇場、臺北的城市劇院，其核心精神是「Open for All」，秉持藝術共樂、人才培育及多元創新的理念，致力將藝術帶入民眾日常生活。
+
+ 2021年北藝中心被《CNN》評選全球最具顛覆性的8大建築，同時入圍2021年TIME《時代雜誌》世界百大最佳景點。由OMA（大都會建築事務所）創辦人兼普利茲克獎得主Rem Koolhaas與其合夥人David Gianotten，一同帶領團隊操刀設計。
+
+ 北藝中心設有「3+1」個劇場，分別為可容納800席的「球劇場」，可容納1500席的「大劇場」，以及可容納800席供實驗作品的「藍盒子劇場」。大、小劇場又可組成最多2500席的超級大劇場，北藝中心大劇院，設有全台最大面積樂池，可容納完整華格納樂團編制劇場，並可應用於各種形式演出，打造視聽饗宴。
+
+ 北藝中心的代表色，分別為：北藝藍是劇場的沉靜、是智慧的魅力，灑滿三個劇場空間；綠色則落在行政辦公室的天頂，帶來自然的呼吸，也在Green Room提醒演員休息；粉紅色代表「孵化中」的暗語，棲息在孕育表演的排練場裡。場館裡的橘，則是「探知的熱情」，民眾可報名參觀回路（Public Loooooop）活動，順著橘紅手扶梯，可見平時看不見的後台風景。
+
+ 臺北表演藝術中心是啟發人們認識藝術，愛上藝術的當代劇場。" />
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/addressTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/titleTextView"
+        app:layout_constraintEnd_toEndOf="@id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/introductionTextView"
+        tools:text="111 臺北市士林區劍潭路1號" />
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/modifiedTimeTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@id/titleTextView"
+        app:layout_constraintEnd_toEndOf="@id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@id/addressTextView"
+        tools:text="2023-08-28 10:11:46 +08:00" />
+
+      <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/officialSiteTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:textSize="16sp"
+        android:autoLink="web"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/titleTextView"
+        app:layout_constraintEnd_toEndOf="@id/titleTextView"
+        app:layout_constraintTop_toBottomOf="@id/modifiedTimeTextView"
+        tools:text="https://www.tpac-taipei.org/" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+  </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

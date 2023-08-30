@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.example.travalexam.data.Attraction
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface AttractionDao {
@@ -16,7 +17,7 @@ interface AttractionDao {
   fun getPagingSource(): PagingSource<Int, Attraction>
 
   @Query("SELECT * FROM attraction WHERE id = :id")
-  fun get(id: Int): Attraction?
+  fun getAttractionFlow(id: Int): Flow<Attraction?>
 
   @Query("DELETE FROM attraction")
   fun deleteAll()

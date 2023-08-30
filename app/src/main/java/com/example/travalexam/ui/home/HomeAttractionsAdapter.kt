@@ -1,4 +1,4 @@
-package com.example.travalexam.ui
+package com.example.travalexam.ui.home
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -10,7 +10,7 @@ import com.example.travalexam.databinding.ItemAttractionBinding
 import com.example.travalexam.utils.bindImage
 
 class HomeAttractionsAdapter(
-  private val onItemClicked: ((Int) -> Unit)
+  private val onItemClicked: ((Attraction) -> Unit)
 ) : PagingDataAdapter<Attraction, AttractionsViewHolder>(DIFF_CALLBACK) {
 
   companion object {
@@ -38,24 +38,15 @@ class HomeAttractionsAdapter(
 
 class AttractionsViewHolder(
   private val binding: ItemAttractionBinding,
-  private val onItemClicked: ((Int) -> Unit)
+  private val onItemClicked: ((Attraction) -> Unit)
 ) : RecyclerView.ViewHolder(binding.root) {
 
-  init {
-    itemView.setOnClickListener {
-      onItemClicked.invoke(attraction.id)
-    }
-  }
-
-  private lateinit var attraction: Attraction
-
   fun bind(item: Attraction) {
-    attraction = item
-
-    if (item.images.isNotEmpty()) {
-      binding.imageView.bindImage(item.images.first().src)
-    }
+    binding.imageView.bindImage(item.images.firstOrNull()?.src)
     binding.titleTextView.text = item.name
     binding.descriptionTextView.text = item.introduction
+    binding.root.setOnClickListener {
+      onItemClicked.invoke(item)
+    }
   }
 }

@@ -6,4 +6,9 @@
   </style>
 
   <style name="Theme.TravalExam" parent="Base.Theme.TravalExam" />
+
+  <style name="RoundedRadius16">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">16dp</item>
+  </style>
 </resources>

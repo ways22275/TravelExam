@@ -1,4 +1,4 @@
-package com.example.travalexam.ui
+package com.example.travalexam.ui.home
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
