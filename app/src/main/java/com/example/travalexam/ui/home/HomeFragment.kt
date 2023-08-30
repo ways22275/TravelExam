@@ -49,7 +49,7 @@ class HomeFragment : Fragment(), Toolbar.OnMenuItemClickListener  {
   override fun onMenuItemClick(item: MenuItem): Boolean {
     when(item.itemId) {
       R.id.language -> {
-        // TODO
+        viewModel.showLanguageSelectDialog(requireView())
       }
     }
     return false
@@ -76,6 +76,7 @@ class HomeFragment : Fragment(), Toolbar.OnMenuItemClickListener  {
 
   private fun initMenu() {
     binding.toolbar.inflateMenu(R.menu.home_menu)
+    binding.toolbar.setOnMenuItemClickListener(this)
   }
 
   private fun observeAttractionSource() {

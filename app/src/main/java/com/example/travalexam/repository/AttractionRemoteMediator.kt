@@ -1,5 +1,6 @@
 package com.example.travalexam.repository
 
+import androidx.lifecycle.LiveData
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -11,7 +12,6 @@ import com.example.travalexam.data.RemoteKey
 import com.example.travalexam.data.getLangCode
 import com.example.travalexam.db.RoomDatabase
 import com.example.travalexam.network.TravelService
-import kotlinx.coroutines.delay
 import retrofit2.HttpException
 import java.io.IOException
 
@@ -21,7 +21,7 @@ const val DEFAULT_PAGE = 1
 class AttractionRemoteMediator(
   private val service: TravelService,
   private val db: RoomDatabase,
-  private val lang: Language?
+  private val lang: LiveData<Language>
 ) : RemoteMediator<Int, Attraction>() {
 
   override suspend fun initialize(): InitializeAction {
@@ -53,7 +53,7 @@ class AttractionRemoteMediator(
     }
 
     try {
-      val apiResponse = service.fetchAttractions(page = page, languageCode = lang.getLangCode())
+      val apiResponse = service.fetchAttractions(page = page, languageCode = lang.value.getLangCode())
       val data = apiResponse.data
       val endOfPaginationReached = data?.isEmpty() == true
 

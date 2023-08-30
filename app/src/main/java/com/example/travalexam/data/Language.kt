@@ -9,7 +9,13 @@ enum class Language (val langCode: String) {
   ES("es"),
   ID("id"),
   TH("th"),
-  VI("vi")
+  VI("vi");
+
+  companion object {
+    fun getLanguage(index: Int): Language {
+      return Language.values()[index]
+    }
+  }
 }
 
 fun Language?.getLangCode(): String {
@@ -18,4 +24,8 @@ fun Language?.getLangCode(): String {
 
 fun Language?.getDisplayName(): String {
   return this?.name ?: "ZH_TW"
+}
+
+fun Language.getIndex(): Int {
+  return Language.values().indexOf(this)
 }

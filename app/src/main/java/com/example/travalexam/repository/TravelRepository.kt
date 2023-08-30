@@ -18,7 +18,7 @@ class TravelRepository(service: TravelService, private val db: RoomDatabase) {
   val attractionsFlow = Pager(
     config = PagingConfig(pageSize = 30),
     pagingSourceFactory = { db.getAttractionDao().getPagingSource() },
-    remoteMediator = AttractionRemoteMediator(service, db, currentLanguage.value)
+    remoteMediator = AttractionRemoteMediator(service, db, currentLanguage)
   ).flow
 
   suspend fun getAttractionFlow(id: Int) = withContext(Dispatchers.IO) {
